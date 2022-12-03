@@ -1,13 +1,20 @@
 public class User {
     private String userName, password, email;
     private Wallet wallet;
-
-    public User(String userName, String password, String email, Wallet wallet) {
+    private int cnt = 0;
+    public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.wallet = wallet;
+        this.wallet = new Wallet();
     }
+    public int getCnt() {
+        return cnt;
+    }
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -29,7 +36,7 @@ public class User {
     public Wallet getWallet() {
         return wallet;
     }
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
+    public void setWallet(float amount) {
+        this.wallet.addToWallet(amount);
     }
 }
