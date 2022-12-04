@@ -1,3 +1,11 @@
+package fawry;
+
 public abstract class Payment {
-    public abstract double calculate(float cost);
+	String description= "unkown method";
+	
+	public String getDescription() {
+		return description;
+	}
+	public abstract double getCost(float cost) ;
+
 }

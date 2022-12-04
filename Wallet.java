@@ -1,4 +1,12 @@
-public class Wallet {
-    private float balance;
-    public void addToWallet(float x){balance += x;}
+package fawry;
+
+public class Wallet extends Payment{
+	public Wallet() {
+		description="using wallet";
+	}
+	@Override
+	public  double calculate(float cost) {
+		return getCost();
+	}
+
 }
