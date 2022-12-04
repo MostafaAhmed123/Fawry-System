@@ -1,10 +1,14 @@
 public class cashOnDelivery extends Payment{
-	public cashOnDelivery(Service s) {
-		description = "using cashOnDelivery";
-		service = s;
-	}
+	private String address;
 	@Override
-	public  double calculate() {
-		return service.getCost();
+	public  boolean pay(double amount) {
+		setBalance(getBalance() - amount);
+		return true;
+	}
+	public void setAddress(String s){
+		address = s;
+	}
+	public String getAddress(){
+		return address;
 	}
 }

@@ -18,7 +18,9 @@ public class Logger {
         this.users = users;
         services = s;
     }
-
+    public ArrayList<Service> getServices() {
+        return services;
+    }
     public ArrayList<User> getUsers() {
         return users;
     }

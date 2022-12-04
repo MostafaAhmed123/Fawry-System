@@ -1,13 +1,13 @@
 public class specificDiscount extends DiscountDecorator{
-	public specificDiscount(Payment payment) {
-		this.pay=payment;
+	public specificDiscount(AbstractService service) {
+		this.service=service;
 	}
-	public String getDescription() {
-		return pay.getDescription() + "  ,specificDiscount";
+	public String getName() {
+		return service.getName() + "  ,specificDiscount";
 	}
 	@Override
-	public  double calculate() {
-		return   pay.calculate()*(1-discount) ;
+	public  double getCost() {
+		return   service.getCost() * (1 - discount);
 		
 	}
 

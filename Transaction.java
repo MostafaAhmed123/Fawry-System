@@ -1,15 +1,15 @@
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private static int ID;
+    static int ID = 0;
     private User user;
     private LocalDateTime date;
-    private float amount;
+    private double amount;
 
-    public Transaction(int ID, User user, LocalDateTime date, float amount) {
+    public Transaction(int ID, User user, double amount) {
         Transaction.ID = ID;
         this.user = user;
-        this.date = date;
+        this.date = LocalDateTime.now();
         this.amount = amount;
     }
     public int getID() {
@@ -32,7 +32,7 @@ public class Transaction {
         this.date = LocalDateTime.now();
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 

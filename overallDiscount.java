@@ -1,15 +1,15 @@
 public class overallDiscount extends DiscountDecorator {
 
-	public overallDiscount(Payment payment) {
-		this.pay=payment;
+	public overallDiscount(AbstractService service) {
+		this.service=service;
 	}
-	public String getDescription() {
-		return pay.getDescription() +"  ,overallDiscount";
+	public String getName() {
+		return service.getName() +"  ,overallDiscount";
 	}
 	
 	@Override
-	public  double calculate() {
-		return    pay.calculate() * (1-discount);
+	public  double getCost() {
+		return service.getCost() * (1-discount);
 		
 	}
 

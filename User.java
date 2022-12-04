@@ -1,12 +1,13 @@
 public class User {
     private String userName, password, email;
-    private double wallet;
+    private WalletMethod wallet = new WalletMethod();
     private int cnt = 0;
+    private boolean loggedIn;
     public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.wallet = 0;
+        loggedIn = false;
     }
     public int getCnt() {
         return cnt;
@@ -36,5 +37,17 @@ public class User {
     @Override
     public String toString(){
         return userName;
+    }
+
+    public WalletMethod getWallet() {
+        return wallet;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }

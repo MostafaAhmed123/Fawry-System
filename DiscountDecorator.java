@@ -1,15 +1,13 @@
-public abstract class DiscountDecorator extends Payment{
-    protected Payment pay;
-    protected float discount;
-    
-    public float getDiscount(){
+public abstract class DiscountDecorator extends AbstractService{
+    protected AbstractService service;
+    protected double discount;
+
+    public double getDiscount(){
 		return discount;
 	}
-	public void setDiscount(float discount) {
+	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	public abstract String getDescription();
-    @Override
-	public abstract double calculate();
-    
+	public abstract double getCost();
+
 }

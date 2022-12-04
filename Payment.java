@@ -1,10 +1,12 @@
 
 public abstract class Payment {
-	protected Service service;
-	String description= "unkown method";
-	public String getDescription() {
-		return description;
+	private double balance;
+	public abstract boolean pay(double amount) ;
+	public double getBalance() {
+		return balance;
 	}
-	public abstract double calculate() ;
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
 }
