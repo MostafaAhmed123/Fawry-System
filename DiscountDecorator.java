@@ -1,5 +1,3 @@
-package fawry;
-
 public abstract class DiscountDecorator extends Payment{
     protected Payment pay;
     protected float discount;

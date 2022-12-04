@@ -1,5 +1,3 @@
-package fawry;
-
 public class specificDiscount extends DiscountDecorator{
 	public specificDiscount(Payment payment) {
 		this.pay=payment;

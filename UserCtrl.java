@@ -26,8 +26,8 @@ public class UserCtrl {
         }
         return false;
     }
-    public void addToWallet(float amount){
-        if(amount>0)
-            curUser.setWallet(amount);
-    }
+//    public void addToWallet(float amount){
+//        if(amount>0)
+//            curUser.setWallet(amount);
+//    }
 }

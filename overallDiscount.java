@@ -1,5 +1,3 @@
-package fawry;
-
 public class overallDiscount extends DiscountDecorator {
 
 	public overallDiscount(Payment payment) {

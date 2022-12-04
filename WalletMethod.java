@@ -1,13 +1,11 @@
-package fawry;
-
-public class Wallet extends Payment{
-	public Wallet(Service s) {
+public class WalletMethod extends Payment{
+	public WalletMethod(Service s) {
 		description="using wallet";
 		service = s;
 	}
 	@Override
 	public  double calculate() {
-		return s.getCost();
+		return service.getCost();
 	}
 
 }

@@ -1,5 +1,3 @@
-package fawry;
-
 public class cashOnDelivery extends Payment{
 	public cashOnDelivery(Service s) {
 		description = "using cashOnDelivery";
@@ -7,6 +5,6 @@ public class cashOnDelivery extends Payment{
 	}
 	@Override
 	public  double calculate() {
-		return s.getCost();
+		return service.getCost();
 	}
 }

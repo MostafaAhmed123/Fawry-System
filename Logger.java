@@ -5,18 +5,18 @@ public class Logger {
     private ArrayList<Transaction> AWtransactions;
     private ArrayList<Transaction> refundTransactions;
     private ArrayList<Integer> refundRequests;
+    private ArrayList<Service> services;
     public Logger() {
         users = new ArrayList<>();
         Ptransactions = new ArrayList<>();
         AWtransactions = new ArrayList<>();
         refundTransactions = new ArrayList<>();
-        refundRequests = new ArrayList<Integer>();
+        refundRequests = new ArrayList<>();
+        services = new ArrayList<>();
     }
-    public Logger(ArrayList<User> users, ArrayList<Transaction> ptransactions, ArrayList<Transaction> AWtransactions, ArrayList<Transaction> refundTransactions) {
+    public Logger(ArrayList<User> users, ArrayList<Service> s) {
         this.users = users;
-        Ptransactions = ptransactions;
-        this.AWtransactions = AWtransactions;
-        this.refundTransactions = refundTransactions;
+        services = s;
     }
 
     public ArrayList<User> getUsers() {

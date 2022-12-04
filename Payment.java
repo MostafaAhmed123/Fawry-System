@@ -1,4 +1,3 @@
-package fawry;
 
 public abstract class Payment {
 	protected Service service;
