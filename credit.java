@@ -2,11 +2,12 @@ package fawry;
 
 public class credit extends Payment {
 	
-	public credit() {
+	public credit(Service s) {
 		description="using credit";
+		service = s;
 	}
 	@Override
-	public  double getCost(float cost) {
-		
+	public  double calculate() {
+		return s.getCost();
 	}
 }

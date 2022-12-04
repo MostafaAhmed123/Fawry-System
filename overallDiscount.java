@@ -10,8 +10,8 @@ public class overallDiscount extends DiscountDecorator {
 	}
 	
 	@Override
-	public  double calculate(float cost) {
-		return    pay.getCost() * (1-discount);
+	public  double calculate() {
+		return    pay.calculate() * (1-discount);
 		
 	}
 

@@ -1,16 +1,15 @@
 package fawry;
 
 public class specificDiscount extends DiscountDecorator{
-	Payment payment;
 	public specificDiscount(Payment payment) {
-		this.payment=payment;
+		this.pay=payment;
 	}
 	public String getDescription() {
-		return payment.getDescription() +"  ,specificDiscount";
+		return pay.getDescription() + "  ,specificDiscount";
 	}
 	@Override
-	public  double calculate(float cost) {
-		return   payment.getCost()* ;
+	public  double calculate() {
+		return   pay.calculate()*(1-discount) ;
 		
 	}
 
