@@ -40,9 +40,17 @@ public class UserCtrl {
     public boolean payForService(String serviceName, Payment method, String username){
         for(int i =0;i<log.getServices().size();i++){
             if(log.getServices().get(i).getName().equals(serviceName)){
-                double amount = log.getServices().get(i).getCost();
+                AbstractService s = log.getServices().get(i);
                 for(int j =0;j<log.getUsers().size();j++){
                     if(log.getUsers().get(j).getUserName().equals(username)){
+                        if(log.getUsers().get(j).hasOverallDiscount())
+                            s = new overallDiscount(s);
+                        if(log.getServices().get(i).hasDiscount()){
+                            specificDiscount temp = new specificDiscount(s);
+                            temp.setDiscount(log.getServices().get(i).getDiscount());
+                            s = new specificDiscount(temp);
+                        }
+                        double amount = s.getCost();
                         if(method.getClass().getName().equalsIgnoreCase("wallet")){
                             if(log.getUsers().get(j).getWallet().pay(amount)) {
                                 log.getUsers().get(j).setCnt(log.getUsers().get(j).getCnt() + 1);

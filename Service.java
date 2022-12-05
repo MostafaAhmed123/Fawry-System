@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 public class Service extends AbstractService{
     private boolean cash, hasDiscount;
+    private double discount = 0;
+    public double getDiscount() {
+        return discount;
+    }
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
     private ArrayList<ServiceProvider> serviceProviders;
     public Service(){
         serviceProviders = new ArrayList<>();
@@ -37,7 +44,6 @@ public class Service extends AbstractService{
         }
         return false;
     }
-
     public boolean hasDiscount() {
         return hasDiscount;
     }

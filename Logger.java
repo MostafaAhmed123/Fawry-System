@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 public class Logger {
-    private ArrayList<User> users;
-    private ArrayList<Transaction> Ptransactions;
-    private ArrayList<Transaction> AWtransactions;
-    private ArrayList<Transaction> refundTransactions;
-    private ArrayList<Integer> refundRequests;
-    private ArrayList<Service> services;
+    private static ArrayList<User> users;
+    private static ArrayList<Transaction> Ptransactions;
+    private static ArrayList<Transaction> AWtransactions;
+    private static ArrayList<Transaction> refundTransactions;
+    private static ArrayList<Integer> refundRequests;
+    private static ArrayList<Service> services;
     public Logger() {
         users = new ArrayList<>();
         Ptransactions = new ArrayList<>();
@@ -40,6 +40,7 @@ public class Logger {
         Ptransactions.add(t);
     }
     public void addIndex(int id){
+        refundRequests.removeIf(n -> (n == id));
         refundRequests.add(id);
     }
     public ArrayList<Integer> getRefundRequests(){

@@ -15,7 +15,9 @@ public class User {
     public void setCnt(int cnt) {
         this.cnt = cnt;
     }
-
+    public boolean hasOverallDiscount(){
+        return cnt==0;
+    }
     public String getUserName() {
         return userName;
     }
