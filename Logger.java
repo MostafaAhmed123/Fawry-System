@@ -13,6 +13,30 @@ public class Logger {
         refundTransactions = new ArrayList<>();
         refundRequests = new ArrayList<>();
         services = new ArrayList<>();
+        ArrayList<ServiceProvider> p = new ArrayList<>();
+        p.add(new ServiceProvider("Vodafone"));
+        p.add(new ServiceProvider("Etisalat"));
+        p.add(new ServiceProvider("We"));
+        p.add(new ServiceProvider("Orange"));
+        services.add(new Service(p));
+        services.get(0).setName("MobileRechargeServices");
+        services.get(0).setCost(20);
+        services.add(new Service(p));
+        services.get(1).setName("InternetPaymentServices");
+        services.get(1).setCost(40);
+        ArrayList<ServiceProvider> tmp = new ArrayList<>();
+        tmp.add(new ServiceProvider("Monthly receipt"));
+        tmp.add(new ServiceProvider("Quarter receipt"));
+        services.add(new Service(tmp));
+        services.get(2).setName("LandlineServices");
+        services.get(2).setCost(60);
+        tmp = new ArrayList<>();
+        tmp.add(new ServiceProvider("Cancer Hospital"));
+        tmp.add(new ServiceProvider("Schools"));
+        tmp.add(new ServiceProvider("NGOs"));
+        services.add(new Service(tmp));
+        services.get(3).setName("Donations");
+        services.get(3).setCost(10);
     }
     public Logger(ArrayList<User> users, ArrayList<Service> s) {
         Logger.users = users;

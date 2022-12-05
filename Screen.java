@@ -9,6 +9,16 @@ public class Screen {
         Uctrl = new UserCtrl();
         Actrl = new AdminCtrl();
     }
+    public void setInitialData(){
+        System.out.println("we put this data to test the program easily, and you can use it also");
+        System.out.println("Users: ");
+        System.out.println("mostafa" +" mostafa@123" +" 123");
+        System.out.println("amr"+" amr@123" + " 456");
+        System.out.println("mohamed"+" mohamed@123" + " 789");
+        Uctrl.signUp("mostafa","mostafa@123","123");
+        Uctrl.signUp("amr","amr@123","456");
+        Uctrl.signUp("mohamed","mohamed@123","789");
+    }
     public void listAllTransactions(){
         ArrayList<ArrayList<Transaction>> tmp = Actrl.getAllTransactions();
         System.out.println("Payment transactions are: ");
@@ -56,6 +66,7 @@ public class Screen {
     }
     public static void main(String[] args){
         Screen s = new Screen();
+        s.setInitialData();
         while(true){
             String choice;
             System.out.println("1- Sign in");
@@ -77,17 +88,17 @@ public class Screen {
                         System.out.println("Enter your choice");
                         tmpUser = scan.next();
                         if(tmpUser.equals("1")){
-                            System.out.println("Enter service name");
                             String serviceName;
+                            System.out.println("Enter service name");
                             serviceName = scan.next();
                             System.out.println("Enter Payment method");
                             String method;
-                            method = scan.nextLine();
+                            method = scan.next();
                             Payment p;
                             if(method.equalsIgnoreCase("cash on delivery")){
                                 System.out.println("Enter your address");
                                 String address;
-                                address = scan.nextLine();
+                                address = scan.next();
                                 p = new cashOnDelivery(address);
                                 s.Uctrl.payForService(serviceName, p, s.Uctrl.curUser.getUserName());
                             }
@@ -97,7 +108,7 @@ public class Screen {
                             else{
                                 System.out.println("Enter card number");
                                 String cardNum;
-                                cardNum = scan.nextLine();
+                                cardNum = scan.next();
                                 System.out.println("Enter password");
                                 String pass = scan.next();
                                 System.out.println("Enter the current balance in your card");
@@ -168,13 +179,13 @@ public class Screen {
                         tmpAdmin = scan.next();
                         if(tmpAdmin.equals("1")){
                             System.out.println("Enter the type of your discount");
-                            String type = scan.nextLine();
+                            String type = scan.next();
                             ArrayList<Object> tmp = new ArrayList<>();
                             tmp.add(type);
                             System.out.println("Enter the discount percentage");
                             double percentage = scan.nextDouble();
                             tmp.add(percentage);
-                            if(type.equalsIgnoreCase("specific discount")){
+                            if("specific discount".contains(type.toLowerCase())){
                                 System.out.println("Enter service name to apply discount");
                                 String serviceName = scan.next();
                                 tmp.add(serviceName);
@@ -190,6 +201,7 @@ public class Screen {
                         else if(tmpAdmin.equals("4")){
                             s.Actrl.logOut();
                             System.out.println("You are now logged out");
+                            break;
                         }
                     }
                 }

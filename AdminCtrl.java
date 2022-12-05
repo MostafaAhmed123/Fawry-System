@@ -24,11 +24,11 @@ public class AdminCtrl {
             return;
         }
         double percentage = Double.parseDouble(a.get(1).toString()) / 100;
-        if(a.get(0).toString().equalsIgnoreCase("overall discount"))
+        if("overall discount".contains(a.get(0).toString().toLowerCase()))
             overallDiscount.discount = percentage;
-        else if(a.get(0).toString().equalsIgnoreCase("specific discount")){
+        else if("specific discount".contains(a.get(0).toString().toLowerCase())){
             for(int i = 0;i<log.getServices().size();i++){
-                if(a.get(2).toString().equalsIgnoreCase(log.getServices().get(i).getName())){
+                if(a.get(2).toString().toLowerCase().contains(log.getServices().get(i).getName().toLowerCase())){
                     log.getServices().get(i).setHasDiscount(true);
                     log.getServices().get(i).setDiscount(percentage);
                 }
@@ -77,8 +77,8 @@ public class AdminCtrl {
     }
     public AdminCtrl(){
         username = "mostafa";
-        email = "m@fci.edu.eg";
-        password = "mmm";
+        email = "mostafa@yahoo.com";
+        password = "20206073";
     }
     public String getUsername() {
         return username;

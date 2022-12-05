@@ -47,9 +47,17 @@ public class Service extends AbstractService{
     public boolean hasDiscount() {
         return hasDiscount;
     }
+    public String getServiceAndServiceProvider(String service){
+        for(int i =0;i<serviceProviders.size();i++){
+            if((serviceProviders.get(i)+" "+ getName()).toLowerCase().contains(service.toLowerCase())){
+                return serviceProviders.get(i)+" "+ getName();
+            }
+        }
+        return null;
+    }
     public void printServiceProviders(){
         for (int i =0;i<serviceProviders.size();i++){
-            System.out.println(serviceProviders.get(i) + getName());
+            System.out.println(serviceProviders.get(i) +" "+ getName());
         }
     }
     public void setHasDiscount(boolean hasDiscount) {

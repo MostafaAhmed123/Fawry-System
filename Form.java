@@ -5,6 +5,7 @@ public class Form implements IField{
     public void addToForm(IField field) {
         this.fields.add(field);
     }
+    public void removeFromForm(IField field){ this.fields.remove(field);}
     @Override
     public Object getField() {
         return fields;

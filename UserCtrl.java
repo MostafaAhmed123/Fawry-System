@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Locale;
+
 public class UserCtrl {
     private Logger log;
     private int idxP = 0, idxAW = 0;
@@ -40,10 +42,11 @@ public class UserCtrl {
     }
     public boolean payForService(String serviceName, Payment method, String username){
         for(int i =0;i<log.getServices().size();i++){
-            if(log.getServices().get(i).getName().equals(serviceName)){
+            if(log.getServices().get(i).getServiceAndServiceProvider(serviceName)!=null && log.getServices().get(i).getServiceAndServiceProvider(serviceName).toLowerCase().contains(serviceName.toLowerCase())){
                 AbstractService s = log.getServices().get(i);
                 for(int j =0;j<log.getUsers().size();j++){
-                    if(log.getUsers().get(j).getUserName().equals(username)){
+                    if(log.getUsers().get(j).getUserName().equals(username) && log.getUsers().get(j).isLoggedIn()){
+                        System.out.println("anything");
                         if(log.getUsers().get(j).hasOverallDiscount())
                             s = new overallDiscount(s);
                         if(log.getServices().get(i).hasDiscount()){
@@ -97,7 +100,7 @@ public class UserCtrl {
         ArrayList<Service> s = new ArrayList<>();
         for(int i = 0;i<log.getServices().size();i++){
             String name = log.getServices().get(i).getName();
-            if(serviceName.toLowerCase().contains(name)){
+            if(name.toLowerCase().contains(serviceName.toLowerCase())){
                 s.add(log.getServices().get(i));
             }
         }
@@ -105,7 +108,7 @@ public class UserCtrl {
     }
     public double hasDiscount(String serviceName){
         for (int i =0;i<log.getServices().size();i++){
-            if(log.getServices().get(i).getName().equalsIgnoreCase(serviceName) && log.getServices().get(i).hasDiscount())
+            if(log.getServices().get(i).getName().toLowerCase().contains(serviceName.toLowerCase()) && log.getServices().get(i).hasDiscount())
                 return log.getServices().get(i).getDiscount();
         }
         return -1;
