@@ -45,14 +45,14 @@ public class Screen {
         System.out.println("3- Search for specific service");
         System.out.println("4- Make refund request");
         System.out.println("5- Check if service has discounts");
-        System.out.println("6- Logout");
+        System.out.println("6- your wallet balance");
+        System.out.println("7- Logout");
     }
     public void displayAdminMenu(){
         System.out.println("1- Add discount");
         System.out.println("2- List all transactions");
-        System.out.println("3- Add existed service provider to a existing service");
-        System.out.println("4- Make decision in refund requests");
-        System.out.println("5- Logout");
+        System.out.println("3- Make decision in refund requests");
+        System.out.println("4- Logout");
     }
     public static void main(String[] args){
         Screen s = new Screen();
@@ -60,15 +60,15 @@ public class Screen {
             String choice;
             System.out.println("1- Sign in");
             System.out.println("2- Sign up as a new user");
-            System.out.println("Anything else to close the program");
+            System.out.println("exit/Exit to close the program");
             System.out.println("Enter your choice");
             choice = scan.next();
             if(choice.equals("1")){
                 String email, password;
                 System.out.println("Enter your email: ");
-                email = scan.nextLine();
+                email = scan.next();
                 System.out.println("Enter your password");
-                password = scan.nextLine();
+                password = scan.next();
                 if(s.Uctrl.signIn(email, password)) {
                     System.out.println("You logged in successfully as regular user");
                     while (true) {
@@ -109,13 +109,13 @@ public class Screen {
                         else if(tmpUser.equals("2")){
                             System.out.println("Enter card number");
                             String cardNum;
-                            cardNum = scan.nextLine();
+                            cardNum = scan.next();
                             System.out.println("Enter password");
                             String pass = scan.next();
                             System.out.println("Enter the amount to be added");
                             double balance = scan.nextDouble();
                             Payment p = new credit(balance,cardNum, pass);
-                            s.Uctrl.curUser.getWallet().addToWallet(balance);
+                            s.Uctrl.addToWallet(s.Uctrl.curUser.getUserName(),balance, p);
                             System.out.println("The amount added successfully");
                         }
                         else if(tmpUser.equals("3")){
@@ -130,10 +130,89 @@ public class Screen {
                             int id;
                             System.out.println("Enter transaction ID");
                             id = scan.nextInt();
+                            try {
+                                if (s.Uctrl.makeRefundRequest(id)) {
+                                    System.out.println("The request has been forwarded to the admin and he will accept or refuse it");
+                                } else {
+                                    System.out.println("we can't find transaction with id " + id + " made by you");
+                                }
+                            }
+                            catch (Exception e){
+                                System.out.println("you entered wrong id");
+                            }
+                        }
+                        else if(tmpUser.equals("5")){
+                            System.out.println("Enter service name");
+                            String servicename = scan.next();
+                            if(s.Uctrl.hasDiscount(servicename)!=-1){
+                                System.out.println("The service has discount: " + s.Uctrl.hasDiscount(servicename));
+                            }
+                            System.out.println("The service doesn't have any discounts");
+                        }
+                        else if(tmpUser.equals("7")){
+                            s.Uctrl.logOut(s.Uctrl.curUser.getUserName());
+                            System.out.println("you are now logged out");
+                            break;
+                        }
+                        else if(tmpUser.equals("6")){
+                            System.out.println(s.Uctrl.curUser.getWallet().getBalance());
                         }
                     }
                 }
+                else if(s.Actrl.signIn(email,password)){
+                    System.out.println("you log in successfully as admin user");
+                    while (true){
+                        String tmpAdmin;
+                        s.displayAdminMenu();
+                        System.out.println("Enter your choice");
+                        tmpAdmin = scan.next();
+                        if(tmpAdmin.equals("1")){
+                            System.out.println("Enter the type of your discount");
+                            String type = scan.nextLine();
+                            ArrayList<Object> tmp = new ArrayList<>();
+                            tmp.add(type);
+                            System.out.println("Enter the discount percentage");
+                            double percentage = scan.nextDouble();
+                            tmp.add(percentage);
+                            if(type.equalsIgnoreCase("specific discount")){
+                                System.out.println("Enter service name to apply discount");
+                                String serviceName = scan.next();
+                                tmp.add(serviceName);
+                            }
+                            s.Actrl.addDiscount(tmp);
+                        }
+                        else if(tmpAdmin.equals("2")){
+                            s.listAllTransactions();
+                        }
+                        else if(tmpAdmin.equals("3")){
+                            s.refundRequests();
+                        }
+                        else if(tmpAdmin.equals("4")){
+                            s.Actrl.logOut();
+                            System.out.println("You are now logged out");
+                        }
+                    }
+                }
+                else{
+                    System.out.println("Wrong Email or password try again");
+                    continue;
+                }
             }
+            if(choice.equals("2")){
+                System.out.println("Enter valid email");
+                String e = scan.next();
+                System.out.println("Enter username");
+                String u = scan.next();
+                System.out.println("Enter your password");
+                String p = scan.next();
+                if(s.Uctrl.signUp(u,e,p)){
+                    System.out.println("The account created successfully");
+                }
+                else
+                    System.out.println("the email or username taken before");
+            }
+            else if(choice.equalsIgnoreCase("exit"))
+                break;
         }
     }
 }

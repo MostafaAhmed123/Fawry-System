@@ -39,6 +39,10 @@ public class AdminCtrl {
         return log.getRefundRequests();
     }
     public void makeDecision(int id){
+        if(!isLogIn()) {
+            System.out.println("access denied you are not logged in as admin user");
+            return;
+        }
         ArrayList<User> u =log.getUsers();
         for(int i =0;i<u.size();i++){
             if(u.get(i) == log.getPtransactions().get(id).getUser()){
@@ -50,6 +54,10 @@ public class AdminCtrl {
         }
     }
     public boolean addNewServiceProvider(String serviceName, ServiceProvider p){
+        if(!isLogIn()) {
+            System.out.println("access denied you are not logged in as admin user");
+            return false;
+        }
         for(int i =0;i<log.getServices().size();i++){
             if(log.getServices().get(i).getName().equalsIgnoreCase(serviceName)){
                 return log.getServices().get(i).addProvider(p);

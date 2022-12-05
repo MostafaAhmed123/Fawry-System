@@ -97,17 +97,17 @@ public class UserCtrl {
         ArrayList<Service> s = new ArrayList<>();
         for(int i = 0;i<log.getServices().size();i++){
             String name = log.getServices().get(i).getName();
-            if(name.toLowerCase().contains(serviceName.toLowerCase())){
+            if(serviceName.toLowerCase().contains(name)){
                 s.add(log.getServices().get(i));
             }
         }
         return s;
     }
-    public boolean hasDiscount(String serviceName){
+    public double hasDiscount(String serviceName){
         for (int i =0;i<log.getServices().size();i++){
             if(log.getServices().get(i).getName().equalsIgnoreCase(serviceName) && log.getServices().get(i).hasDiscount())
-                return true;
+                return log.getServices().get(i).getDiscount();
         }
-        return false;
+        return -1;
     }
 }
