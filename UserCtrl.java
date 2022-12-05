@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 public class UserCtrl {
     private Logger log;
+    private int idxP = 0, idxAW = 0;
     User curUser;
     public UserCtrl(){
         log = new Logger();
@@ -54,20 +55,23 @@ public class UserCtrl {
                         if(method.getClass().getName().equalsIgnoreCase("wallet")){
                             if(log.getUsers().get(j).getWallet().pay(amount)) {
                                 log.getUsers().get(j).setCnt(log.getUsers().get(j).getCnt() + 1);
-                                log.addPtransaction(new Transaction(Transaction.ID + 1, log.getUsers().get(j), amount));
+                                log.addPtransaction(new Transaction(idxP, log.getUsers().get(j), amount));
+                                idxP++;
                                 return true;
                             }
                         }
                         else if(method.getClass().getName().equalsIgnoreCase("cash on delivery") && log.getServices().get(i).acceptCash()){
                             method.pay(amount);
-                            log.addPtransaction(new Transaction(Transaction.ID+1,log.getUsers().get(j),amount));
+                            log.addPtransaction(new Transaction(idxP,log.getUsers().get(j),amount));
+                            idxP++;
                             log.getUsers().get(j).setCnt(log.getUsers().get(j).getCnt()+1);
                             return true;
                         }
                         else{
                             if(method.pay(amount)) {
-                                log.addPtransaction(new Transaction(Transaction.ID + 1, log.getUsers().get(j), amount));
+                                log.addPtransaction(new Transaction(idxP, log.getUsers().get(j), amount));
                                 log.getUsers().get(j).setCnt(log.getUsers().get(j).getCnt() + 1);
+                                idxP++;
                                 return true;
                             }
                         }
@@ -79,10 +83,13 @@ public class UserCtrl {
     }
     public void addToWallet(String username, double amount, Payment method){
         for(int i =0;i<log.getUsers().size();i++){
-            if(log.getUsers().get(i).getUserName().equals(username) && method.getClass().getName().equalsIgnoreCase("credit card")) {
+            ArrayList<User> u = log.getUsers();
+            User tmp = u.get(i);
+            if(tmp.getUserName().equals(username) && method.getName().equalsIgnoreCase("credit card")) {
                 method.pay(amount);
                 log.getUsers().get(i).getWallet().addToWallet(amount);
-                log.addAWtransaction(new Transaction(Transaction.ID+1,log.getUsers().get(i), amount));
+                log.addAWtransaction(new Transaction(idxAW,log.getUsers().get(i), amount));
+                idxAW++;
             }
         }
     }

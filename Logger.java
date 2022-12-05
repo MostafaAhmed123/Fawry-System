@@ -15,7 +15,7 @@ public class Logger {
         services = new ArrayList<>();
     }
     public Logger(ArrayList<User> users, ArrayList<Service> s) {
-        this.users = users;
+        Logger.users = users;
         services = s;
     }
     public ArrayList<Service> getServices() {

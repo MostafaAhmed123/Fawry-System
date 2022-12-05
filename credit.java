@@ -1,6 +1,9 @@
 public class credit extends Payment {
 	private String cardNum, password;
-	public credit(double b){
+	public credit(double b, String cardNum, String pass){
+		this.cardNum = cardNum;
+		this.password = pass;
+		name ="credit card";
 		setBalance(b);
 	}
 	@Override

@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-
-public class UserForm implements IField{
-    private ArrayList<IField> fields = new ArrayList<>();
-    public void addToForm(IField field) {
-        this.fields.add(field);
-    }
-    @Override
-    public Object getField() {
+public class UserForm {
+    private IField fields;
+    public IField getFields() {
         return fields;
+    }
+    public void setFields(IField fields) {
+        this.fields = fields;
     }
 }

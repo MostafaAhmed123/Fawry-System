@@ -47,7 +47,11 @@ public class Service extends AbstractService{
     public boolean hasDiscount() {
         return hasDiscount;
     }
-
+    public void printServiceProviders(){
+        for (int i =0;i<serviceProviders.size();i++){
+            System.out.println(serviceProviders.get(i) + getName());
+        }
+    }
     public void setHasDiscount(boolean hasDiscount) {
         this.hasDiscount = hasDiscount;
     }

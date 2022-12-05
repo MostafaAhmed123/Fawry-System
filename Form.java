@@ -1,10 +1,12 @@
 import java.util.ArrayList;
-public class Form {
-    private IField fields;
-    public IField getFields() {
-        return fields;
+
+public class Form implements IField{
+    private ArrayList<IField> fields = new ArrayList<>();
+    public void addToForm(IField field) {
+        this.fields.add(field);
     }
-    public void setFields(IField fields) {
-        this.fields = fields;
+    @Override
+    public Object getField() {
+        return fields;
     }
 }

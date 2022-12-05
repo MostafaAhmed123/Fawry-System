@@ -44,6 +44,7 @@ public class AdminCtrl {
             if(u.get(i) == log.getPtransactions().get(id).getUser()){
                 u.get(i).getWallet().addToWallet(log.getPtransactions().get(id).getAmount());
                 log.addRefundTransaction(new Transaction(idxRefund,u.get(i),-1*log.getPtransactions().get(id).getAmount()));
+                idxRefund++;
                 log.getRefundRequests().removeIf(n -> (n == id));
             }
         }

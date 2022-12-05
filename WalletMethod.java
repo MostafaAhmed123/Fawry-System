@@ -9,5 +9,7 @@ public class WalletMethod extends Payment{
 		setBalance(getBalance()-amount);
 		return true;
 	}
-
+	public WalletMethod(){
+		name = "wallet";
+	}
 }

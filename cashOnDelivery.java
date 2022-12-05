@@ -5,6 +5,10 @@ public class cashOnDelivery extends Payment{
 		setBalance(getBalance() - amount);
 		return true;
 	}
+	public cashOnDelivery(String address){
+		this.address = address;
+		name = "cash on delivery";
+	}
 	public void setAddress(String s){
 		address = s;
 	}

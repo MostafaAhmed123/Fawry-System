@@ -1,13 +1,13 @@
 import java.time.LocalDateTime;
 
 public class Transaction {
-    static int ID = 0;
+    private int ID;
     private User user;
     private LocalDateTime date;
     private double amount;
 
     public Transaction(int ID, User user, double amount) {
-        Transaction.ID = ID;
+        this.ID = ID;
         this.user = user;
         this.date = LocalDateTime.now();
         this.amount = amount;
@@ -16,7 +16,7 @@ public class Transaction {
         return ID;
     }
     public void setID(int ID) {
-        Transaction.ID = ID;
+        this.ID = ID;
     }
     public User getUser() {
         return user;
